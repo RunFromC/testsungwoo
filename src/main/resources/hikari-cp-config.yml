@@ -1,0 +1,7 @@
+poolName: HikariConnectionPool
+minimumIdle: 20
+maximumPoolSize: 30
+idleTimeout: 15000
+maxLifetime: 300000
+validationTimeout: 10000
+connectionTestQuery: SELECT 1

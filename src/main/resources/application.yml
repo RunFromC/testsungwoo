@@ -1,0 +1,57 @@
+spring:
+  datasource:
+
+    dohwan:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/dohwan?allowMultiQueries=true&serverTimezone=Asia/Seoul
+      username: root
+      password: 1234
+      driverClassName: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      max-lifetime: 500
+      idle-timeout: 500
+      maximum-pool-size: 15
+      connection-test-query: SELECT 1
+
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        show_sql: true
+        type: trace
+    database-platform: org.hibernate.dialect.MariaDB102Dialect
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis:
+  type-aliases-package: com.project.demo.domain
+  configuration:
+    call-setters-on-nulls: true
+
+logging.level:
+  sql: debug
+  com.project.demo: DEBUG
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+
+cookie:
+  secret-key: DSK
+
+server:
+  port: 85
+  error:
+    whitelabel:
+      enabled: false
+    include-exception: false
+    include-stacktrace: never
+  servlet:
+    session:
+      cookie:
+        name: CNAME
+        http-only: true
+        secure: false
