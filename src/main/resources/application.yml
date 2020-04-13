@@ -43,7 +43,7 @@ cookie:
   secret-key: DSK
 
 server:
-  port: 85
+  port: 86
   error:
     whitelabel:
       enabled: false

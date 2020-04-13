@@ -2,7 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.demo.repository.mapper.dohwan.DohwanMapper">
-    <select id="testQuery" resultType="Integer">
-        SELECT 1
+    <select id="getUserList" resultType="map">
+        SELECT
+            US.user_idx AS userIdx, US.id AS id,
+            CERT.name AS `name`,
+            SAP.name AS platformName, SAD.platform_supplied_nickname AS platformNickname, SAD.platform_supplied_profile_image AS profileImageUrl,
+            US.recent_date AS recentDate
+        FROM `user` AS US
+        LEFT JOIN `certification` AS CERT ON CERT.cert_idx = US.cert_idx
+        LEFT JOIN `sns_auth_user_map` AS SAUM ON SAUM.user_idx = US.user_idx
+        LEFT JOIN `sns_authorization_data` AS SAD ON SAD.auth_idx = SAUM.auth_idx
+        LEFT JOIN `sns_auth_platform` AS SAP ON SAP.sns_platform_idx = SAD.sns_platform_idx
+
+        LIMIT 0, 100
     </select>
 </mapper>
